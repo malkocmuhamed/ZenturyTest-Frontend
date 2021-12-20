@@ -1,0 +1,38 @@
+<nav class="navbar">
+  <p class="p1">My Music App</p>
+  <input class="searchinput" type="text" name="songName" [(ngModel)]="name" (ngModelChange)="searchSong()"
+    placeholder="Search song...">
+</nav>
+
+<p class="p2">Check Songs list out!</p>
+<table class="table  table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Song name</th>
+      <th scope="col">Artist</th>
+      <th scope="col">URL</th>
+      <th scope="col">Rating (1-5)</th>
+      <th scope="col">Favourites</th>
+      <th scope="col">Category</th>
+      <th scope="col">Delete</th>
+      <th scope="col">Update</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let song of songs">
+      <td>{{song.songName}}</td>
+      <td>{{song.songArtist}}</td>
+      <td>{{song.songUrl}}</td>
+      <td><a href="{{song.songRating}}">{{song.songRating}}</a></td>
+      <td>{{song.isFavourite}}</td>
+      <td>{{song.categoryId}}</td>
+      <td><button class="deletebutton" (click)="removeSong(song.songId)">Delete song</button></td>
+      <td><button class="deletebutton" [routerLink]="['/editsong/:id']">Edit song</button></td>
+
+    </tr>
+  </tbody>
+</table>
+<p class="p3">Want More? Then</p>
+<div class="addsongdiv">
+  <button class="addsongbtn" mat-raised-button color="primary" [routerLink]="['/addsong']">Add new song</button><br>
+</div>

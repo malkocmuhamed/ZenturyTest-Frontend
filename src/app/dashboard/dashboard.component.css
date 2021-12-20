@@ -1,0 +1,71 @@
+.table
+{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.p1
+{
+    font-family: 'Gluten', cursive;
+    font-size: 40px;
+    color: aliceblue;
+    margin-top: 20px;
+    margin-left: 50px;
+}
+.searchinput
+{
+    height: 40px;
+    border-radius: 20px;
+    width: 400px;
+    padding-left: 10px;
+    font-size: 18px;
+    border-width: 1px;
+    outline: none;
+}
+nav
+{
+    background-color: rgba(18, 11, 83, 0.993);
+    background-size: cover;
+    display: grid;
+    grid-template-rows: 50% 50%;
+    justify-content: center;
+    box-shadow: aliceblue;
+    margin-bottom: 30px;
+}
+.p2
+{
+    text-align: center; 
+    color: black;
+    font-family: 'Gluten', cursive;
+    font-size: 30px;
+}
+.p3
+{
+    text-align: center; 
+    color: black;
+    font-family: 'Gluten', cursive;
+    font-size: 25px;
+}
+.deletebutton
+{
+    background-color: rgb(80, 54, 139);
+    border-radius: 5px;
+    border: none;
+    height: 28px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 15px;
+    color: white;
+}
+.addsongdiv
+{
+    text-align: center;
+}
+.addsongbtn
+{
+    background-color: rgba(37, 17, 54, 0.993);
+    width: 150px;
+    height: 50px;
+    font-size: 18px;
+    border-radius: 20px;
+    color: white;
+    box-shadow: rgba(1, 4, 31, 0.35) 0px 1px 15px;
+}
