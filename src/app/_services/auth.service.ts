@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { SessionService } from './session.service';
 import { tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 interface LoginDTO {
   token: string;
@@ -19,12 +20,10 @@ export interface UserData {
 export class AuthService {
   basePath = 'account';
   baseUrl = environment.baseUrl + '/api';
-  // override apiPath = 'api';
-  // override version = '';
-
+ 
   loggedIn$ = new Subject<boolean>();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.loggedIn$.next(this.isLoggedIn);
   }
 
@@ -69,10 +68,9 @@ export class AuthService {
     }
   }
 
-  logout() {
-    SessionService.deleteSession();
-
-    this.loggedIn$.next(false);
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['/dashboard']);
   }
 
   private tokenSideAffects(token: string) {

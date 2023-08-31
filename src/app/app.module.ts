@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './_components/dashboard/dashboard.component';
+import { LoginComponent } from './_components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -19,16 +19,20 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UserEditDialogComponent } from './users/user-edit-dialog/user-edit-dialog.component';
 import { DeleteUserDialogComponent } from './_components/users/delete-user-dialog/delete-user-dialog.component';
 import { CreateUserDialogComponent } from './_components/users/create-user-dialog/create-user-dialog.component';
+import { HeaderComponent } from './_components/header/header.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent,
+    LoginComponent,
     UsersComponent,
     LoginsComponent,
     UserEditDialogComponent,
     DeleteUserDialogComponent,
-    CreateUserDialogComponent
+    CreateUserDialogComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -36,8 +40,10 @@ import { CreateUserDialogComponent } from './_components/users/create-user-dialo
     HttpClientModule,
     FormsModule,
     MatFormFieldModule,
+    MatToolbarModule,
     MatTableModule,
     MatInputModule,
+    MatButtonModule,
     MatDialogModule,
     MatIconModule,
     MatCardModule,

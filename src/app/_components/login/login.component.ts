@@ -6,11 +6,11 @@ import { AuthenticatedResponse } from 'src/app/_models/authenticatedresponse.mod
 import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class DashboardComponent {
+export class LoginComponent {
   form!: FormGroup;
   invalidLogin: boolean | any;
 
