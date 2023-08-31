@@ -70,7 +70,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('token');
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/login']);
   }
 
   private tokenSideAffects(token: string) {

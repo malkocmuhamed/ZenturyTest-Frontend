@@ -16,12 +16,13 @@ import { AuthService } from './_services/auth.service';
 import { MatInputModule } from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { UserEditDialogComponent } from './users/user-edit-dialog/user-edit-dialog.component';
+import { UserEditDialogComponent } from './_components/users/user-edit-dialog/user-edit-dialog.component';
 import { DeleteUserDialogComponent } from './_components/users/delete-user-dialog/delete-user-dialog.component';
 import { CreateUserDialogComponent } from './_components/users/create-user-dialog/create-user-dialog.component';
 import { HeaderComponent } from './_components/header/header.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatFormFieldModule,
     MatToolbarModule,
     MatTableModule,
+    MatPaginatorModule,
     MatInputModule,
     MatButtonModule,
     MatDialogModule,

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/_models/user.model';
 import { UserService } from 'src/app/_services/user.service';
 
@@ -10,7 +10,7 @@ import { UserService } from 'src/app/_services/user.service';
   styleUrls: ['./user-edit-dialog.component.css']
 })
 export class UserEditDialogComponent implements OnInit {
-  form!: FormGroup;
+  public form: FormGroup | any;
 
   constructor(
     private dialogRef: MatDialogRef<UserEditDialogComponent>,
@@ -20,12 +20,19 @@ export class UserEditDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group({
-      firstName: [this.data.user.firstName, Validators.required],
-      lastName: [this.data.user.lastName, Validators.required],
-      userName: [this.data.user.userName, Validators.required],
-      email: [this.data.user.email, [Validators.required, Validators.email]]
-    });
+    this.initializeForm();
+  }
+
+  initializeForm(){
+    this.form = new FormGroup(
+      {
+        firstName: new FormControl(this.data.user.firstName, [Validators.required]),
+        lastName:new FormControl(this.data.user.lastName, [Validators.required]),
+        userName: new FormControl(this.data.user.userName, [Validators.required]),
+        email: new FormControl(this.data.user.email, [Validators.required, Validators.email]),
+        passwordHash: new FormControl(this.data.user.passwordHash, [Validators.required, Validators.minLength(8)])
+      },
+    );
   }
 
   get f() {
@@ -41,12 +48,13 @@ export class UserEditDialogComponent implements OnInit {
       firstName: this.f.firstName.value,
       lastName: this.f.lastName.value,
       userName: this.f.userName.value,
-      email: this.f.email.value
+      email: this.f.email.value,
+      passwordHash: this.f.passwordHash.value
     };
 
     this.userService.updateUser(updatedUser.id, updatedUser).subscribe(() => {
       this.dialogRef.close(true);
-      this.userService.getUsers();
+      this.userService.getAllUsers();
     });
   }
 

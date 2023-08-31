@@ -2,22 +2,24 @@
   <div class="auth-content">
     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="fs-13px">
       <div class="form-wrapper">
-        <div class="form-floating ">
-          <input type="text" class="form-control h-45px fs-13px" placeholder="Email Address" id="emailAddress" formControlName="userName">
-        </div>
-        <div *ngIf="f['userName'].touched && f['userName'].errors" class="error-wrapper">
-          <p *ngIf="f['userName'].errors['required']">Email is required</p>
-          <p *ngIf="f['userName'].errors['email']">Email is invalid</p>
-        </div>
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Username</mat-label>
+          <input matInput type="text" placeholder="Username" formControlName="userName">
+          <mat-error *ngIf="f['userName'].touched && f['userName'].hasError('required')">Username is required</mat-error>
+          <mat-error *ngIf="f['userName'].touched && f['userName'].hasError('userName')">Username is invalid</mat-error>
+        </mat-form-field>
       </div>
-      <div class="form-floating mt-3">
-        <input type="password" class="form-control h-45px fs-13px" placeholder="Password" id="password" formControlName="password">
-      </div>
-      <div *ngIf="f['password'].touched && f['password'].errors" class="error-wrapper">
-        <p *ngIf="f['password'].errors['required']">Password is required</p>
+      <div class="form-wrapper mt-3">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Password" formControlName="password">
+          <mat-error *ngIf="f['password'].touched && f['password'].hasError('required')">Password is required</mat-error>
+          <!-- <mat-error *ngIf="f['password'].errors?.pattern">Password must contain at least 1 capital letter and 1 number</mat-error> -->
+          <mat-error *ngIf="f['password'].errors?.minlength">Password must be at least 6 characters</mat-error>
+        </mat-form-field>
       </div>
       <div class="mb-3 mt-5">
-        <button type="submit" [disabled]="form.invalid"  class="btn btn-success d-block h-45px w-100 btn-lg fs-14px">Sign me in</button>
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" class="d-block h-45px w-100 btn-lg fs-14px">Sign me in</button>
       </div>
       <hr class="bg-gray-600 opacity-2">
       <div class="text-gray-600 text-center mb-0">

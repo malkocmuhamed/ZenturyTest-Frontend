@@ -1,16 +1,18 @@
 /* Center the table on the page */
 .user-table-container {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: center; */
+    width:80%;
+    height: 60vh;
+    margin:auto;
+    padding-top: 50px;
   }
   
-  /* Limit the table width */
   .user-table {
-    width: 80%; /* Adjust as needed */
+    width: 90%; 
     border-collapse: collapse;
-    margin: 20px;
+    margin: auto;
   }
   
   /* Style table header */
@@ -31,9 +33,45 @@
   .user-table tr:nth-child(even) {
     background-color: #f2f2f2;
   }
+  .paginator{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
   
   /* Style action buttons */
   .action-buttons button {
     margin-right: 5px;
+  }
+  .user-logins {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .users-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .mat-card-title {
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .button-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .mat-button {
+    margin-left: 10px;
   }
   

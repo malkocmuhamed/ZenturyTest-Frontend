@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticatedResponse } from 'src/app/_models/authenticatedresponse.model';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  form!: FormGroup;
+  public form: FormGroup | any;
   invalidLogin: boolean | any;
 
   constructor(
@@ -20,12 +20,22 @@ export class LoginComponent {
     private authService: AuthService) {}
 
   ngOnInit(): void {
-    this.form = this.formBuilder.group(
-      {
-        userName: ['', [Validators.required]],
-        password: ['', Validators.required],
-      });
+    this.initializeForm();
   }
+
+  initializeForm(){
+    this.form = new FormGroup(
+      {
+        userName: new FormControl('', [Validators.required]),
+        password: new FormControl('', 
+        [Validators.required, 
+        Validators.minLength(6),
+        // Validators.pattern('^(?=.*[A-Z])(?=.*[0-9]).*$')
+      ])
+      },
+    );
+  }
+
 
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
@@ -60,7 +70,7 @@ export class LoginComponent {
 
   logout(){
     localStorage.removeItem("token");
-    this.router.navigate(['/dashboard']);
+    this.router.navigate(['/login']);
     // this.toastr.info("Login session has expired.");
   }
 }

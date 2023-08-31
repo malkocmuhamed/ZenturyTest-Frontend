@@ -1,8 +1,7 @@
-/* Custom CSS */
 .auth-content {
   width: 100%;
   max-width: 400px;
-  height: 400px; /* Set your desired fixed height */
+  height: 400px;
   padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -19,5 +18,4 @@
   color: #dc3545;
   margin-top: 5px;
 }
-
-/* If needed, you can add more custom styling here */
+ 

@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { FormControl, FormGroup, Validators} from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import { UserService } from 'src/app/_services/user.service';
 import { User } from 'src/app/_models/user.model';
 
@@ -28,9 +28,15 @@ export class CreateUserDialogComponent {
         lastName:new FormControl('', [Validators.required]),
         username: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
-        passwordHash: new FormControl('', [Validators.required, Validators.minLength(8)])
+        passwordHash: new FormControl('', 
+        [Validators.required, 
+        Validators.minLength(6),
+        Validators.pattern('^(?=.*[A-Z])(?=.*[0-9]).*$')])
       },
     );
+  }
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls;
   }
 
   createUser(): void {

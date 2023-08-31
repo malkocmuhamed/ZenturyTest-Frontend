@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/_models/user.model';
 import { UserService } from 'src/app/_services/user.service';
-import { UserEditDialogComponent } from '../../users/user-edit-dialog/user-edit-dialog.component';
+import { UserEditDialogComponent } from './user-edit-dialog/user-edit-dialog.component';
 import { DeleteUserDialogComponent } from './delete-user-dialog/delete-user-dialog.component';
 import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
 
@@ -23,7 +23,7 @@ export class UsersComponent implements OnInit {
   }
 
   loadUsers(): void {
-    this.userService.getUsers().subscribe(users => {
+    this.userService.getAllUsers().subscribe(users => {
       this.users = new MatTableDataSource<User>(users);
     });
   }
