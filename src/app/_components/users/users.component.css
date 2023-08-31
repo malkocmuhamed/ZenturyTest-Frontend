@@ -1,0 +1,39 @@
+/* Center the table on the page */
+.user-table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Limit the table width */
+  .user-table {
+    width: 80%; /* Adjust as needed */
+    border-collapse: collapse;
+    margin: 20px;
+  }
+  
+  /* Style table header */
+  .user-table th {
+    background-color: #f2f2f2;
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+  
+  /* Style table rows */
+  .user-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  /* Style alternate rows */
+  .user-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Style action buttons */
+  .action-buttons button {
+    margin-right: 5px;
+  }
+  

@@ -1,10 +1,9 @@
 export interface User
 {
-    songId: number,
-    songName: string,
-    songArtist: string,
-    songUrl: string,
-    songRating: number,
-    isFavourite: string,
-    categoryId: number
+    id: number,
+    firstName: string,
+    lastName: string,
+    userName: string,
+    email: string,
+    password: string
 }

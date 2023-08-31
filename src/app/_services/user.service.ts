@@ -1,37 +1,34 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, throwError } from 'rxjs';
-import { User } from "../_models/user.model";
-import { environment } from '../../environments/environment';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { User } from '../_models/user.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class UserService {
+  private usersUrl = environment.baseUrl + '/api/users'; // Replace with your actual API URL
 
-    // songsUrl = environment.baseUrl + '/api/song';
+  constructor(private http: HttpClient) {}
 
-    // constructor(private _http: HttpClient) { }
+  // Get all users
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.usersUrl}`);
+  }
 
-    // postSong(song: Song) {
-    //     return this._http.post<any>(this.songsUrl, song);
-    // }
+  // Create a new user
+  createUser(user: User): Observable<User> {
+    return this.http.post<User>(`${this.usersUrl}`, user);
+  }
 
-    // editSong(song: Song) {
-    //     return this._http.put<any>(this.songsUrl, song);
-    // }
-   
-    // getSongById(id: number): Observable<Song> {
-    //     return this._http.get<Song>(this.songsUrl + '/' + id);
-    // }
+  // Update an existing user
+  updateUser(id: number, user: User): Observable<User> {
+    return this.http.put<User>(`${this.usersUrl}/${id}`, user);
+  }
 
-    // getAllSongs(): Observable<Song[]> {
-    //     return this._http.get<Song[]>(this.songsUrl);
-    // }
-
-    // deleteSong(id: number) {
-    //     this._http.delete(this.songsUrl + '/' + id).subscribe(data => {
-    //         alert("Song with ID " + id + ": Successfully removed!");
-    //     });     
-    // }
+  // Delete a user by ID
+  deleteUser(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.usersUrl}/${id}`);
+  }
 }

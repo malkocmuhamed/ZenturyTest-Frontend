@@ -10,14 +10,25 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UsersComponent } from './_components/users/users.component';
 import { LoginsComponent } from './_components/logins/logins.component';
 import {MatCardModule} from '@angular/material/card';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatFormFieldControl, MatFormFieldModule} from '@angular/material/form-field';
+import {MatTableModule} from '@angular/material/table';
+import { AuthService } from './_services/auth.service';
+import { MatInputModule } from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { UserEditDialogComponent } from './users/user-edit-dialog/user-edit-dialog.component';
+import { DeleteUserDialogComponent } from './_components/users/delete-user-dialog/delete-user-dialog.component';
+import { CreateUserDialogComponent } from './_components/users/create-user-dialog/create-user-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     UsersComponent,
-    LoginsComponent
+    LoginsComponent,
+    UserEditDialogComponent,
+    DeleteUserDialogComponent,
+    CreateUserDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -25,11 +36,18 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     HttpClientModule,
     FormsModule,
     MatFormFieldModule,
+    MatTableModule,
+    MatInputModule,
+    MatDialogModule,
+    MatIconModule,
     MatCardModule,
     ReactiveFormsModule,
+    FormsModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

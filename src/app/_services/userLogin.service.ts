@@ -9,12 +9,12 @@ import { environment } from '../../environments/environment';
 })
 export class UserLoginService {
 
-    // categoryUrl = environment.baseUrl + '/api/category';
+    private userLoginsUrl =  environment.baseUrl + '/api/UserLogins'; 
 
-    // constructor(private _http: HttpClient) { }
-
-    // getAllCategories(): Observable<UserLogin[]> {
-    //     return this._http.get<UserLogin[]>(this.categoryUrl);
-    // }
+    constructor(private http: HttpClient) { }
+  
+    getUserLogins(): Observable<UserLogin[]> {
+      return this.http.get<UserLogin[]>(`${this.userLoginsUrl}`);
+    }
 
 }
