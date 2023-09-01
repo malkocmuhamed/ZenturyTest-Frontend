@@ -18,7 +18,10 @@
           <mat-error *ngIf="f['password'].errors?.minlength">Password must be at least 6 characters</mat-error>
         </mat-form-field>
       </div>
-      <div class="mb-3 mt-5">
+      <div *ngIf="invalidLogin" class="error-message">
+        {{ errorMessage }}
+      </div>
+      <div class="mb-3 mt-3">
         <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid" class="d-block h-45px w-100 btn-lg fs-14px">Sign me in</button>
       </div>
       <hr class="bg-gray-600 opacity-2">

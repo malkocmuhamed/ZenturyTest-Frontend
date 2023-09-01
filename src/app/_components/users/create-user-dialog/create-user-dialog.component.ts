@@ -26,12 +26,13 @@ export class CreateUserDialogComponent {
       {
         firstName: new FormControl('', [Validators.required]),
         lastName:new FormControl('', [Validators.required]),
-        username: new FormControl('', [Validators.required]),
+        userName: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
         passwordHash: new FormControl('', 
         [Validators.required, 
         Validators.minLength(6),
-        Validators.pattern('^(?=.*[A-Z])(?=.*[0-9]).*$')])
+        // Validators.pattern('^(?=.*[A-Z])(?=.*[0-9]).*$')
+      ])
       },
     );
   }
@@ -43,13 +44,12 @@ export class CreateUserDialogComponent {
     if (this.form.invalid) {
       return;
     }
-   console.log("CREATE")
     this.userService.createUser(this.form.value).subscribe(() => {
-      this.dialogRef.close(true); // Indicate successful creation
+      this.dialogRef.close(true); 
     });
   }
 
   cancel(): void {
-    this.dialogRef.close(false); // Indicate cancellation
+    this.dialogRef.close(false);
   }
 }

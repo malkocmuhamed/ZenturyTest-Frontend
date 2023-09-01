@@ -2,7 +2,28 @@
     <mat-toolbar>
     <span>ZenturyApp</span>
     <span class="example-spacer"></span>
-    <button mat-button color="warn" (click)="logout()">Logout</button>
+    <div *ngIf="isLoggedIn">
+      <button mat-button color="warn" (click)="logout()">Logout</button>
+    </div>
   </mat-toolbar>
   </p>
   
+   <!-- <mat-toolbar color="primary">
+    <div class="header-content">
+      <div class="header-title">
+        <span>ZenturyTask</span>
+      </div>
+      <div class="header-flex-spacer"></div>
+      <div class="header-actions">
+        <ng-container *ngIf="isLoggedIn; else showIcon">
+          <button mat-icon-button color="warn" (click)="logout()">
+            Logout 
+          </button>
+        </ng-container>
+        <ng-template #showIcon>
+          <mat-icon>account_circle</mat-icon>
+        </ng-template>
+      </div>
+    </div>
+  </mat-toolbar>
+   -->

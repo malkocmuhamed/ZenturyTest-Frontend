@@ -30,7 +30,7 @@ export class UserEditDialogComponent implements OnInit {
         lastName:new FormControl(this.data.user.lastName, [Validators.required]),
         userName: new FormControl(this.data.user.userName, [Validators.required]),
         email: new FormControl(this.data.user.email, [Validators.required, Validators.email]),
-        passwordHash: new FormControl(this.data.user.passwordHash, [Validators.required, Validators.minLength(8)])
+        passwordHash: new FormControl(this.data.user.passwordHash, [Validators.required, Validators.minLength(6)])
       },
     );
   }

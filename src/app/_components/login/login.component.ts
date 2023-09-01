@@ -13,10 +13,10 @@ import { AuthService } from 'src/app/_services/auth.service';
 export class LoginComponent {
   public form: FormGroup | any;
   invalidLogin: boolean | any;
+  errorMessage: string;
 
   constructor(
     private router: Router, 
-    private formBuilder: FormBuilder, 
     private authService: AuthService) {}
 
   ngOnInit(): void {
@@ -60,6 +60,7 @@ export class LoginComponent {
       },
       error: (err: HttpErrorResponse) =>{ 
         this.invalidLogin = true;
+        this.errorMessage = this.authService.getErrorMessage(); // Get error message
       }
     });
   }  
@@ -73,4 +74,5 @@ export class LoginComponent {
     this.router.navigate(['/login']);
     // this.toastr.info("Login session has expired.");
   }
+ 
 }

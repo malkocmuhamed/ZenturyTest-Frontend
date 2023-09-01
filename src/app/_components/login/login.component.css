@@ -8,6 +8,10 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+.error-message {
+  text-align: center;
+  color:red;
+}
 .auth-container {
   display: flex;
   justify-content: center;
