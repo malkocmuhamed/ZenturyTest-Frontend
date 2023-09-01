@@ -38,12 +38,9 @@ export class LoginsComponent implements OnInit {
     const pageSize = 10;
     this.loadUserLogins(pageNumber, pageSize);
     this.loadAllUserLogins();
-    this.userLogins.sort = this.sortLogins; // Bind MatSort to userLogins table
+    // this.userLogins.sort = this.sortLogins;
   }
 
-  ngAfterViewInit() {
-    this.userLogins.sort = this.sortLogins; // Bind MatSort to userLogins table
-  }
   openDeleteDialog(userLogin: UserLogin): void {
     const dialogRef = this.dialog.open(DeleteLoginDialogComponent, {
       width: '300px',
