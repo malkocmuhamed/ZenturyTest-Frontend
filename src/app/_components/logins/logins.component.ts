@@ -4,6 +4,8 @@ import { UserLogin } from 'src/app/_models/userLogin.model';
 import { UserLoginService } from 'src/app/_services/userLogin.service';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteLoginDialogComponent } from './delete-login-dialog/delete-login-dialog.component';
 
 @Component({
   selector: 'app-logins',
@@ -12,37 +14,46 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 })
 export class LoginsComponent implements OnInit {
 
-  userLogins:  MatTableDataSource<UserLogin>;
-  userLogins_: UserLogin[] = [];
   displayedColumns: string[] = [
     'userName', 
     'loginDateTime',
     'loginTime',
-    'isLoginSuccessful']; // Add more column names as needed
+    'isLoginSuccessful',
+    'actions']; 
+  userLogins:  MatTableDataSource<UserLogin>;
   totalUserLoginsCount: number = 0;
   currentPageIndex: number = 0;
   pageSize: number = 10;
 
-  constructor(private userLoginsService: UserLoginService) { }
-  @ViewChild(MatSort) sort!: MatSort;
+  constructor(
+    private userLoginsService: UserLoginService, 
+    private dialog: MatDialog 
+  ) { }
+
+  @ViewChild(MatSort) sortLogins: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
-    const pageNumber = 1; // Adjust to your desired page number
-    const pageSize = 10; // Adjust to your desired page size
+    const pageNumber = 1;
+    const pageSize = 10;
     this.loadUserLogins(pageNumber, pageSize);
     this.loadAllUserLogins();
-    // this.userLogins.paginator = this.paginator;
-    // this.userLogins = new MatTableDataSource<UserLogin>(/* Your array of UserLogin objects */);
-    // this.userLogins.sort = this.sort;
-    // this.userLogins.sortingDataAccessor = (login, property) => {
-    //   switch (property) {
-    //     case 'loginDateTime': return new Date(login.loginDateTime);
-    //     default: return login[property];
-    //   }
-    // };
-    // // this.userLogins.sort.direction = 'desc';
-    // this.userLogins.sort.active = 'loginDateTime';
+    this.userLogins.sort = this.sortLogins; // Bind MatSort to userLogins table
+  }
+
+  ngAfterViewInit() {
+    this.userLogins.sort = this.sortLogins; // Bind MatSort to userLogins table
+  }
+  openDeleteDialog(userLogin: UserLogin): void {
+    const dialogRef = this.dialog.open(DeleteLoginDialogComponent, {
+      width: '300px',
+      data: { userId: userLogin.id } // Pass the user ID to the dialog
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.loadAllUserLogins();
+      }
+    });
   }
 
   pageChanged(event: PageEvent): void {
@@ -55,14 +66,8 @@ export class LoginsComponent implements OnInit {
 
   loadAllUserLogins(): void {
     this.userLoginsService.getAllUserLogins()
-      .subscribe({
-        next: (logins: UserLogin[]) => {
-          this.userLogins_ = logins;
-          console.log(logins);
-        },
-        error: (error: any) => {
-          console.error('Error loading user logins:', error);
-        }
+      .subscribe(users => {
+        this.userLogins = new MatTableDataSource<UserLogin>(users);
       });
   }
 
@@ -73,9 +78,12 @@ export class LoginsComponent implements OnInit {
     });
   }
 
-  userFilter = '';
-  applyFilter(): void {
-    this.userLogins.filter = this.userFilter.trim().toLowerCase();
+  deleteUserLogin(id: number): void {
+    this.userLoginsService.deleteUserLogin(id).subscribe(
+      () => {},
+      error => {
+        console.error('Error deleting user login:', error);
+      }
+    );
   }
-
 }

@@ -23,6 +23,8 @@ import { HeaderComponent } from './_components/header/header.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { DeleteLoginDialogComponent } from './_components/logins/delete-login-dialog/delete-login-dialog.component';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     UserEditDialogComponent,
     DeleteUserDialogComponent,
     CreateUserDialogComponent,
-    HeaderComponent
+    HeaderComponent,
+    DeleteLoginDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule,
     MatFormFieldModule,
     MatToolbarModule,
+    MatSortModule,
     MatTableModule,
     MatPaginatorModule,
     MatInputModule,

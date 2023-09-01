@@ -36,7 +36,6 @@ export class LoginComponent {
     );
   }
 
-
   get f(): { [key: string]: AbstractControl } {
     return this.form.controls;
   }
@@ -74,5 +73,4 @@ export class LoginComponent {
     this.router.navigate(['/login']);
     // this.toastr.info("Login session has expired.");
   }
- 
 }

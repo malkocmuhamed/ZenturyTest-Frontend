@@ -1,4 +1,3 @@
-<!-- users.component.html -->
 <div class="user-logins">
   <mat-card class="header">
     <mat-card-title>Users</mat-card-title>
@@ -11,7 +10,6 @@
 
   <div class="mat-elevation-z8 user-table-container">
       <table mat-table [dataSource]="users" matSort class="user-table">
-        <!-- Columns -->
         <ng-container matColumnDef="firstName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
           <td mat-cell *matCellDef="let user"> {{ user.firstName }} </td>

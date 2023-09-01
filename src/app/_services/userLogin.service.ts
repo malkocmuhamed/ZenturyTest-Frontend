@@ -26,5 +26,10 @@ export class UserLoginService {
   
       return this.http.get<PaginatedResponse<UserLogin>>(url);
     }
+    
+    deleteUserLogin(id: number): Observable<any> {
+      const url = `${this.userLoginsUrl}/${id}`;
+      return this.http.delete(url);
+    }
 
 }
